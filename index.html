@@ -1,23 +1,25 @@
-<!-- //TODO consider using a frontend framework -->
+<!-- //TODO clean code -->
 <!DOCTYPE html>
 <html>
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <!--[if LTE IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!--[if LTE IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <title>Рига – история и достопримечательности</title>
+    <!-- //TODO fix Android Chrome right padding -->
     <style type="text/css">
         html {
-            height: 100%;
+            width: 100%;
             margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
-            background: #fff;
-            padding: 0;
             width: 100%;
+            margin: 0;
+            padding: 0;
+            background: #fff;
             font-family: "times new roman", serif;
+            font-size: 0;
         }
 
         a {
@@ -28,37 +30,10 @@
             color: #855D7E;
         }
 
-        dfn:before {
-            content: "«";
-        }
-
-        dfn:after {
-            content: "»";
-        }
-
-        dfn {
-            font-style: normal;
-        }
-
-        q {
-            quotes: "«" "»";
-        }
-
-        p {
-            margin: 0;
-            padding: 0 0 15px;
-        }
-
-        blockquote {
-            margin: 0;
-            padding: 0 10px 15px 15px;
-        }
-
         header {
             width: 100%;
             padding: 0;
             margin: 0 0 40px;
-            font-size: 0;
         }
 
         header ul {
@@ -84,9 +59,9 @@
         header ul strong {
             display: block;
             font-weight: normal;
-            padding: 0 0;
+            padding: 0;
             font-family: arial, sans-serif;
-            font-size: 18px;
+            font-size: 20px;
             white-space: nowrap;
             text-shadow: 1px 0 2px #555;
         }
@@ -95,9 +70,11 @@
             color: #ffffff;
         }
 
-        header ul li.external strong a {
-            padding-right: 15px;
-            background: url('data:image/gif;base64,R0lGODlhDAAMAIABAPPz8////yH5BAEAAAEALAAAAAAMAAwAAAIajI+JwKDpTIuOQolPXDrnvQWhJyrjxDxqUAAAOw==') no-repeat right top;
+        header ul li strong a {
+            padding-right: 19px;
+            text-decoration: none;
+            border-bottom: 1px solid;
+            background: url('data:image/gif;base64,R0lGODlhDAAMAIABAPPz8////yH5BAEAAAEALAAAAAAMAAwAAAIajI+JwKDpTIuOQolPXDrnvQWhJyrjxDxqUAAAOw==') no-repeat right center;
         }
 
         header ul li p {
@@ -105,9 +82,8 @@
             margin: 0;
             color: #fff;
             font-family: arial, sans-serif;
-            font-size: 11px;
-            width: 100px;
-            white-space: normal;
+            font-size: 15px;
+            width: 140px;
         }
 
         header h1, header form {
@@ -135,7 +111,6 @@
             font-family: times new roman, serif;
             text-align: right;
             color: #777;
-            font-size: 0;
         }
 
         header form * {
@@ -156,15 +131,15 @@
 
         header input[type=submit] {
             border-style: none;
-
             color: #666;
             text-align: center;
             width: 30px;
         }
 
-        header input[type=search],header input[type=text] {
+        header input[type=search], header input[type=text] {
             width: 260px;
             margin: 0;
+            border: 1px solid #999;
         }
 
         header input[type=search]:focus {
@@ -178,10 +153,10 @@
 
         footer {
             border-top: 3px double #ddd;
-            padding: 10px 0px 50px 0px;
+            padding: 10px 0 50px 0;
             font-family: arial, sans-serif;
             font-size: 13px;
-            margin: 40px 15px 0px 15px;
+            margin: 40px 15px 0 15px;
         }
 
         main {
@@ -201,35 +176,40 @@
             margin: 0;
         }
 
-        .forum-cell {
+        aside {
             font-size: 15px;
             color: #666;
+            width: 25%;
         }
 
-        .forum-cell ul,.forum-cell h3 {
+        aside ul, aside h3 {
             margin: 0;
         }
 
-        .forum-cell ul {
+        aside ul {
             list-style-image: url('data:image/gif;base64,R0lGODlhDQAKAIABAJnMM////yH5BAEAAAEALAAAAAANAAoAAAIUjB8AyKfdHkRP2YtznkZOD4HRchQAOw==');
             padding: 0 0 15px 20px;
         }
 
-        .forum-cell li {
+        aside li {
             padding-bottom: 3px;
         }
 
-        .forum-cell h3 {
+        aside h3 {
             font-size: 16px;
             padding: 0 0 3px 0;
         }
 
+        #quotes {
+            width: 75%;
+        }
+
         #quotes blockquote {
+            padding: 0 10px 15px .7em;
             display: none;
             margin: 0 50px 0 80px;
             font-size: 22px;
             font-family: georgia, times new roman, serif;
-            padding-left: 0.7em;
             text-indent: -0.7em;
         }
 
@@ -241,37 +221,6 @@
 
         #quotes blockquote, #quotes blockquote a {
             color: #999;
-        }
-
-        .container,.block-main,.block-side {
-            display: inline-block;
-            vertical-align: top;
-            margin: 0;
-        }
-
-        .container {
-            width: 33%;
-            font-size: 15px;
-            color: #555;
-        }
-
-        .container ul {
-            padding: 0 20px 15px 0;
-            margin: 0;
-            list-style: none;
-        }
-
-        .container ul li {
-            padding: 0 0 3px;
-            margin: 0;
-        }
-        
-        .block-main {
-            width: 75%;
-        }
-
-        .block-side {
-            width: 25%;
         }
 
         header #tongue {
@@ -295,316 +244,364 @@
             height: 665px;
             z-index: 100;
         }
+
+        .container, #quotes, aside {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        /*
+            //TODO try CSS3 columns
+        */
+
+        .container {
+            width: 33%;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .container ul {
+            padding: 0 20px 15px 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .container ul li {
+            padding: 0 0 3px;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
-<header>
-    <div id='tongue'></div>
-    <div id='griffin'></div>
+    <header>
+        <div id='tongue'></div>
+        <div id='griffin'></div>
 
-    <h1>Рига – история и достопримечательности</h1>
-    <form action='http://www.google.com/cse' id='searchbox_009234653099071964377:iunabn2wlhq' name='web' method='get'>
-        <label for='searchText'>Поиск по сайту и форуму</label>
-        <input id='searchText' type='search' results='5' name='q' size='25' />
-        <input type='hidden' name='cx' value='009234653099071964377:iunabn2wlhq' />
-        <input type='submit' name='sa' value='&rarr;' />
-    </form>
+        <h1>Рига – история и достопримечательности</h1>
 
-    <ul>
-        <li class="external">
-            <strong><a href='http://riga.zurbu.net/maps'>Карты</a></strong>
-            <p>Исторические карты Риги</p>
-        </li>
-        <li class="external">
-            <strong><a href='http://forum.myriga.info/'>Форум</a></strong>
-            <p>«Беседы о Риге»<br />„Sarunas par Rīgu”</p>
-        </li>
-        <li class="external">
-            <strong><a href='http://zurbu.net/'>Zurbu</a></strong>
-            <p>Сайты об истории городов мира</p>
-        </li>
-        <li class="external">
-            <strong><a href='http://www.rigacv.lv/'>Riga CV</a></strong>
-            <p>Общество ценителей Риги</p>
-        </li>
-        <li class="external">
-            <strong><a href='http://letters.ernt.lv/'>Буквы</a></strong>
-            <p>Пропишите ижицу&nbsp;– буквально!</p>
-        </li>
-    </ul>
-</header>
-<main>
-<div class="block-main" id="quotes">
-    <blockquote class='quote'>
-        «Ипполит Матвеевич живо воображал себе покупку новых носков и отъезд за границу. Мечты Остапа были обширнее. Его проекты были грандиозны. Не то заграждение Голубого Нила плотиной, не то открытие игорного особняка в Риге с филиалами во всех лимитрофах»
-        <div>Илья Ильф, Евгений Петров<br />Двенадцать стульев</div>
-    </blockquote>
-    <blockquote class='quote'>
-        «Вы изволили затерять нос свой?<br />—&nbsp;Так точно.<br />—&nbsp;Он теперь найден. [...]<br />—&nbsp;Каким образом?<br />—&nbsp;Странным случаем: его перехватили почти на дороге. Он уже садился в дилижанс и хотел уехать в Ригу»
-        <div>Николай Васильевич Гоголь<br />Нос</div>
-    </blockquote>
-    <blockquote class='quote'>
-        «Началось у них пари ещё в Твердиземном море, и пили они до рижского Динаминде, но шли всё наравне и друг другу не уступали и до того аккуратно равнялись, что когда один, глянув в море, увидал, как  из воды черт лезет, так сейчас то же самое и другому объявилось»
-        <div>Николай Семёнович Лесков<br />Левша</div>
-    </blockquote>
-    <blockquote class='quote'>
-        «Просто невозможно на месте устоять<br />И сегодня с нами будут танцевать:<br />Рига и Волгоград, Тында и Ашхабад.<br />Над страною звучит московский бит»
-        <div>«Браво»<br />Московский бит</div>
-    </blockquote>
-    <blockquote class='quote'>
-        «[…] студент присяжный,<br />
-        С витою трубкою в зубах,<br />
-        В плаще, с дубиной и в усах<br />
-        Явился в Риге. Там спесиво<br />
-        В трактирах стал он пенить пиво,<br />
-        В дыму табачных облаков;<br />
-        Бродить над берегами моря […]»
-        <div>Александр Сергеевич Пушкин<br />Послание Дельвигу</div>
-    </blockquote>
-</div>
-<div class='block-side forum-cell'>
-    <h3>Свежие <a href="http://forum.myriga.info/">беседы о Риге</a></h3>
-    <div id="forum-posts">Загружаю...</div>
-</div>
-<h2>Статьи об истории Риги</h2>
-<div class='container'>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/458'>Остров Буллю</a></li>
-        <li><a href='http://riga.zurbu.net/document/93'>Даугавгривская крепость</a></li>
-        <li><a href='http://riga.zurbu.net/document/81'>Даугавгривский маяк</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/7'>Береговые батареи, форты и дамбы острова Буллю и Мангальсалы</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/101'>Болдерая</a></li>
-        <li><a href='http://riga.zurbu.net/document/85'>Болдерайские мосты</a></li>
-        <li><a href='http://riga.zurbu.net/document/752'>Бумбу калнс</a></li>
-        <li><a href='http://riga.zurbu.net/document/617'>Памятник леснику Петерису Купшу</a></li>
-        <li><a href='http://riga.zurbu.net/document/91'>Точка пересечения 24 меридиана с 57 параллелью</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/751'>Судрабкалниньш</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/45'>Золитуде и Шампетерис</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/39'>Ильгюциемс</a></li>
-        <li><a href='http://riga.zurbu.net/document/97'>Дзегужкалнс</a></li>
-        <li><a href='http://riga.zurbu.net/document/117'>Аэропорт «Спилве»</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/55'>Кливерсала</a></li>
-        <li><a href='http://riga.zurbu.net/document/69'>Дом моряков им. Петра Великого</a></li>
-        <li><a href='http://riga.zurbu.net/document/71'>«Замок света» и другие проекты зданий Латвийской Национальной библиотеки</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/50'>Торнякалнс</a></li>
-        <li><a href='http://riga.zurbu.net/document/104'>Парк «Аркадия»</a></li>
-        <li><a href='http://riga.zurbu.net/document/30'>Детская больница</a></li>
-        <li><a href='http://riga.zurbu.net/document/76'>Коброншанц</a></li>
-        <li><a href='http://riga.zurbu.net/document/37'>Торнякалнская церковь Лютера</a></li>
-        <li><a href='http://riga.zurbu.net/document/94'>Торнякалнские виадуки</a></li>
-        <li><a href='http://riga.zurbu.net/document/73'>Усадьба Блока</a></li>
-        <li><a href='http://riga.zurbu.net/document/4'>Торнякалнское общество взаимопомощи</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/113'>Бишумуйжа</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/38'>Луцавсала</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/51'>Закюсала</a></li>
-        <li><a href='http://riga.zurbu.net/document/56'>Телекомплекс</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/68'>Агенскалнс</a></li>
-        <li><a href='http://riga.zurbu.net/document/99'>Мельница святой Марии</a></li>
-        <li><a href='http://riga.zurbu.net/document/8'>Троице-Задвинская церковь</a></li>
-        <li><a href='http://riga.zurbu.net/document/32'>Агенскалнский рынок</a></li>
-        <li><a href='http://riga.zurbu.net/document/459'>Агенскалнские сосны</a></li>
-        <li><a href='http://riga.zurbu.net/document/478'>Церковь святого Мартина</a></li>
-        <li><a href='http://riga.zurbu.net/document/106'>Агенскалнская водонапорная башня</a></li>
-        <li><a href='http://riga.zurbu.net/document/60'>Ботанический сад</a></li>
-        <li><a href='http://riga.zurbu.net/document/77'>Парк Победы</a></li>
-        <li><a href='http://riga.zurbu.net/document/114'>Агенскалнский парк</a></li>
-        <li><a href='http://riga.zurbu.net/document/124'>Дом Эстонского общества</a></li>
-        <li><a href='http://riga.zurbu.net/document/92'>Алтона</a></li>
-        <li><a href='http://riga.zurbu.net/document/41'>Больница имени Страдыня</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/33'>Кипсала</a></li>
-    </ul>
-</div>
-<div class='container'>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/46'>Югла</a></li>
-        <li><a href='http://riga.zurbu.net/document/80'>Бикерниекская церковь</a></li>
-        <li><a href='http://riga.zurbu.net/document/96'>Страздумуйжа</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/36'>Берги</a></li>
-        <li><a href='http://riga.zurbu.net/document/28'>Нейермюлен (Адажский замок)</a></li>
-        <li><a href='http://riga.zurbu.net/document/9'>Гауйско-Даугавский канал</a></li>
-        <li><a href='http://riga.zurbu.net/document/34'>Усадьба Баложи, Этнографический музей</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/145'>Сужи</a></li>
-        <li><a href='http://riga.zurbu.net/document/125'>Яунциемс</a></li>
-        <li><a href='http://riga.zurbu.net/document/144'>Трисциемс</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/483'>Вецаки</a></li>
-        <li><a href='http://riga.zurbu.net/document/105'>Старая Даугавгривская крепость</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/107'>Кундзиньсала</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/42'>Вецмилгравис, Ринужи</a></li>
-        <li><a href='http://riga.zurbu.net/document/83'>«Burtnieku nams»</a></li>
-        <li><a href='http://riga.zurbu.net/document/52'>«Ziemeļblāzma»</a></li>
-        <li><a href='http://riga.zurbu.net/document/1'>Милгрависский железнодорожный мост</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/10'>Яунмилгравис</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/108'>Саркандаугава</a></li>
-        <li><a href='http://riga.zurbu.net/document/26'>Второй Царский сад, Психоневрологическая больница</a></li>
-        <li><a href='http://riga.zurbu.net/document/13'>Сахарная мануфактура Раве</a></li>
-        <li><a href='http://riga.zurbu.net/document/122'>Waldschlößchen (Aldaris), его парк и вилла</a></li>
-        <li><a href='http://riga.zurbu.net/document/128'>Церковь святой Троицы</a></li>
-        <li><a href='http://riga.zurbu.net/document/65'>Церковь Христа Царя</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/6'>Межапаркс</a></li>
-        <li><a href='http://riga.zurbu.net/document/102'>Зоопарк</a></li>
-        <li><a href='http://riga.zurbu.net/document/57'>Парк культуры и отдыха</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/3'>Чиекуркалнс</a></li>
-        <li><a href='http://riga.zurbu.net/document/11'>Лесное кладбище</a></li>
-        <li><a href='http://riga.zurbu.net/document/29'>Братское кладбище</a></li>
-        <li><a href='http://riga.zurbu.net/document/464'>Крематорий</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/63'>Тейка</a></li>
-        <li><a href='http://riga.zurbu.net/document/750'>Церковь Креста</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/453'>Московский форштадт</a></li>
-        <li><a href='http://riga.zurbu.net/document/58'>Церковь Иисуса</a></li>
-        <li><a href='http://riga.zurbu.net/document/74'>Церковь Всех святых</a></li>
-        <li><a href='http://riga.zurbu.net/document/109'>Церковь святого Франциска и парк Миера</a></li>
-        <li><a href='http://riga.zurbu.net/document/27'>Гребенщиковская моленная староверов</a></li>
-        <li><a href='http://riga.zurbu.net/document/467'>Центральный рынок</a></li>
-        <li><a href='http://riga.zurbu.net/document/753'>Гостиный двор</a></li>
-        <li><a href='http://riga.zurbu.net/document/753'>Академия наук</a></li>
-        <li><a href='http://riga.zurbu.net/document/1051'>Богадельня Садовникова</a></li>
-        <li><a href='http://riga.zurbu.net/document/89'>Коюсальский сад</a></li>
-        <li><a href='http://riga.zurbu.net/document/78'>Католический госпиталь</a></li>
-        <li><a href='http://riga.zurbu.net/document/2'>Центральная тюрьма</a></li>
-    </ul>
-</div>
-<div class='container'>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/120'>Рижская ГЭС</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/95'>Гризинькалнс</a></li>
-        <li><a href='http://riga.zurbu.net/document/127'>Сад Зиедоньдарзс</a></li>
-        <li><a href='http://riga.zurbu.net/document/79'>Парк 1905 года</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/516'>Дворец спорта</a></li>
-        <li><a href='http://riga.zurbu.net/document/66'>Видземский рынок</a></li>
-        <li><a href='http://riga.zurbu.net/document/88'>Ипподром</a></li>
-        <li><a href='http://riga.zurbu.net/document/35'>Большое кладбище</a></li>
-        <li><a href='http://riga.zurbu.net/document/110'>Воздушный мост</a></li>
-        <li><a href='http://riga.zurbu.net/document/72'>Церкви святой Гертруды</a></li>
-        <li><a href='http://riga.zurbu.net/document/126'>Театр «Дайлес»</a></li>
-        <li><a href='http://riga.zurbu.net/document/47'>Народный дом</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/118'>Главное здание Латвийского университета</a></li>
-        <li><a href='http://riga.zurbu.net/document/64'>Дом Латышского общества</a></li>
-        <li><a href='http://riga.zurbu.net/document/5'>Национальная опера</a></li>
-        <li><a href='http://riga.zurbu.net/document/116'>Памятник Свободы</a></li>
-        <li><a href='http://riga.zurbu.net/document/123'>Парк у Городского канала</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/472'>Кинотеатр «Рига»</a></li>
-        <li><a href='http://riga.zurbu.net/document/534'>Кинотеатр «Спартак»</a></li>
-        <li><a href='http://riga.zurbu.net/document/70'>Гимназия Кениньшей, ныне 40 средняя школа</a></li>
-        <li><a href='http://riga.zurbu.net/document/67'>Базар Берга</a></li>
-        <li><a href='http://riga.zurbu.net/document/31'>Верманский сад</a></li>
-        <li><a href='http://riga.zurbu.net/document/59'>Заведение минеральных вод</a></li>
-        <li><a href='http://riga.zurbu.net/document/100'>Дворец правосудия</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/53'>Гостиница «Латвия»</a></li>
-        <li><a href='http://riga.zurbu.net/document/54'>Национальный художественный музей</a></li>
-        <li><a href='http://riga.zurbu.net/document/484'>Академия художеств</a></li>
-        <li><a href='http://riga.zurbu.net/document/25'>Эспланада</a></li>
-        <li><a href='http://riga.zurbu.net/document/87'>Христорождественский собор</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/119'>Сад Виестура</a></li>
-        <li><a href='http://riga.zurbu.net/document/61'>«Дом со сторожем» на Аусекля, 3</a></li>
-        <li><a href='http://riga.zurbu.net/document/111'>Национальный театр</a></li>
-        <li><a href='http://riga.zurbu.net/document/90'>Парк Кронвальда</a></li>
-        <li><a href='http://riga.zurbu.net/document/115'>Цитадель</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/86'>«Большой Кристап»</a></li>
-        <li><a href='http://riga.zurbu.net/document/98'>Госпиталь святого Георгия</a></li>
-        <li><a href='http://riga.zurbu.net/document/48'>Здание Сейма</a></li>
-        <li><a href='http://riga.zurbu.net/document/82'>Армейский экономический магазин (ныне «Galerija Centrs»)</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/84'>Велосипед</a></li>
-        <li><a href='http://riga.zurbu.net/document/112'>Омнибус</a></li>
-        <li><a href='http://riga.zurbu.net/document/40'>Проект рижского метро</a></li>
-        <li><a href='http://riga.zurbu.net/document/749'>Проект скоростного трамвая</a></li>
-    </ul>
-    <ul>
-        <li><a href='http://riga.zurbu.net/document/121'>Герб города</a></li>
-        <li><a href='http://riga.zurbu.net/document/19'>Петушки на шпилях башен</a></li>
-    </ul>
-</div>
-</main>
-<footer>
-    <a href='http://ernt.lv/'>Артур Рейльян</a>
-</footer>
+        <form action='http://www.google.com/cse' id='searchbox_009234653099071964377:iunabn2wlhq' method='get'>
+            <label for='searchText'>Поиск по сайту и форуму</label>
+            <input id='searchText' type='search' results='5' name='q' size='25'/>
+            <input type='hidden' name='cx' value='009234653099071964377:iunabn2wlhq'/>
+            <input type='submit' name='sa' value='&rarr;'/>
+        </form>
 
-<script type="text/javascript">
-    $(function() {
-        (function() {
-            $.get('./forum.php', function (content) {
-                var container = $('#forum-posts').html('<ul></ul>').find('ul');
-                $.each(JSON.parse(content), function(i, row) {
-                    container.append('<li><a href="' + row['url'] + '">' + row['title'] + '</a></li>');
+        <ul>
+            <li class="external">
+                <strong><a href='http://riga.zurbu.net/maps'>Карты</a></strong>
+                <p>Исторические карты Риги</p>
+            </li>
+            <li class="external">
+                <strong><a href='http://zurbu.net/'>Zurbu</a></strong>
+                <p>Сайты об истории городов мира</p>
+            </li>
+            <li class="external">
+                <strong><a href='http://forum.myriga.info/'>Форум</a></strong>
+                <p>«Беседы о Риге»<br/>„Sarunas par Rīgu”</p>
+            </li>
+            <li class="external">
+                <strong><a href='http://www.rigacv.lv/'>Riga CV</a></strong>
+                <p>Общество ценителей Риги</p>
+            </li>
+            <li class="external">
+                <strong><a href='http://letters.ernt.lv/'>Буквы</a></strong>
+                <p>Пропишите ижицу&nbsp;– буквально!</p>
+            </li>
+        </ul>
+    </header>
+    <main>
+        <div id="quotes">
+            <blockquote>
+                «Ипполит Матвеевич живо воображал себе покупку новых носков и отъезд за границу. Мечты Остапа были обширнее. Его
+                проекты были грандиозны. Не то заграждение Голубого Нила плотиной, не то открытие игорного особняка в Риге с
+                филиалами во всех лимитрофах»
+                <div>Илья Ильф, Евгений Петров<br/>Двенадцать стульев</div>
+            </blockquote>
+            <blockquote>
+                «Вы изволили затерять нос свой?<br/>
+                —&nbsp;Так точно.<br/>
+                —&nbsp;Он теперь найден. [...]<br/>
+                —&nbsp;Каким образом?<br/>
+                —&nbsp;Странным случаем: его перехватили почти на дороге. Он уже садился в дилижанс и хотел уехать в Ригу»
+                <div>Николай Васильевич Гоголь<br/>Нос</div>
+            </blockquote>
+            <blockquote>
+                «Началось у них пари ещё в Твердиземном море, и пили они до рижского Динаминде, но шли всё наравне и друг другу
+                не уступали и до того аккуратно равнялись, что когда один, глянув в море, увидал, как из воды черт лезет, так
+                сейчас то же самое и другому объявилось»
+                <div>Николай Семёнович Лесков<br/>Левша</div>
+            </blockquote>
+            <blockquote>
+                «Просто невозможно на месте устоять<br/>
+                И сегодня с нами будут танцевать:<br/>
+                Рига и Волгоград, Тында и Ашхабад.<br/>
+                Над страною звучит московский бит»
+                <div>«Браво»<br/>Московский бит</div>
+            </blockquote>
+            <blockquote>
+                «[…] студент присяжный,<br/>
+                С витою трубкою в зубах,<br/>
+                В плаще, с дубиной и в усах<br/>
+                Явился в Риге. Там спесиво<br/>
+                В трактирах стал он пенить пиво,<br/>
+                В дыму табачных облаков;<br/>
+                Бродить над берегами моря […]»
+                <div>Александр Сергеевич Пушкин<br/>Послание Дельвигу</div>
+            </blockquote>
+        </div>
+        <aside class='block-side'>
+            <h3>Свежие <a href="http://forum.myriga.info/">беседы о Риге</a></h3>
+
+            <div id="forum-posts">Загружаю...</div>
+        </aside>
+        <h2>Статьи об истории Риги</h2>
+
+        <div class='container'>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/458'>Остров Буллю</a></li>
+                <li><a href='http://riga.zurbu.net/document/93'>Даугавгривская крепость</a></li>
+                <li><a href='http://riga.zurbu.net/document/81'>Даугавгривский маяк</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/7'>Береговые батареи, форты и дамбы острова Буллю и Мангальсалы</a>
+                </li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/101'>Болдерая</a></li>
+                <li><a href='http://riga.zurbu.net/document/85'>Болдерайские мосты</a></li>
+                <li><a href='http://riga.zurbu.net/document/752'>Бумбу калнс</a></li>
+                <li><a href='http://riga.zurbu.net/document/617'>Памятник леснику Петерису Купшу</a></li>
+                <li><a href='http://riga.zurbu.net/document/91'>Точка пересечения 24 меридиана с 57 параллелью</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/751'>Судрабкалниньш</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/45'>Золитуде и Шампетерис</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/39'>Ильгюциемс</a></li>
+                <li><a href='http://riga.zurbu.net/document/97'>Дзегужкалнс</a></li>
+                <li><a href='http://riga.zurbu.net/document/117'>Аэропорт «Спилве»</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/55'>Кливерсала</a></li>
+                <li><a href='http://riga.zurbu.net/document/69'>Дом моряков им. Петра Великого</a></li>
+                <li><a href='http://riga.zurbu.net/document/71'>«Замок света» и другие проекты зданий Латвийской Национальной
+                    библиотеки</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/50'>Торнякалнс</a></li>
+                <li><a href='http://riga.zurbu.net/document/104'>Парк «Аркадия»</a></li>
+                <li><a href='http://riga.zurbu.net/document/30'>Детская больница</a></li>
+                <li><a href='http://riga.zurbu.net/document/76'>Коброншанц</a></li>
+                <li><a href='http://riga.zurbu.net/document/37'>Торнякалнская церковь Лютера</a></li>
+                <li><a href='http://riga.zurbu.net/document/94'>Торнякалнские виадуки</a></li>
+                <li><a href='http://riga.zurbu.net/document/73'>Усадьба Блока</a></li>
+                <li><a href='http://riga.zurbu.net/document/4'>Торнякалнское общество взаимопомощи</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/113'>Бишумуйжа</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/38'>Луцавсала</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/51'>Закюсала</a></li>
+                <li><a href='http://riga.zurbu.net/document/56'>Телекомплекс</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/68'>Агенскалнс</a></li>
+                <li><a href='http://riga.zurbu.net/document/99'>Мельница святой Марии</a></li>
+                <li><a href='http://riga.zurbu.net/document/8'>Троице-Задвинская церковь</a></li>
+                <li><a href='http://riga.zurbu.net/document/32'>Агенскалнский рынок</a></li>
+                <li><a href='http://riga.zurbu.net/document/459'>Агенскалнские сосны</a></li>
+                <li><a href='http://riga.zurbu.net/document/478'>Церковь святого Мартина</a></li>
+                <li><a href='http://riga.zurbu.net/document/106'>Агенскалнская водонапорная башня</a></li>
+                <li><a href='http://riga.zurbu.net/document/60'>Ботанический сад</a></li>
+                <li><a href='http://riga.zurbu.net/document/77'>Парк Победы</a></li>
+                <li><a href='http://riga.zurbu.net/document/114'>Агенскалнский парк</a></li>
+                <li><a href='http://riga.zurbu.net/document/124'>Дом Эстонского общества</a></li>
+                <li><a href='http://riga.zurbu.net/document/92'>Алтона</a></li>
+                <li><a href='http://riga.zurbu.net/document/41'>Больница имени Страдыня</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/33'>Кипсала</a></li>
+            </ul>
+        </div>
+        <div class='container'>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/46'>Югла</a></li>
+                <li><a href='http://riga.zurbu.net/document/80'>Бикерниекская церковь</a></li>
+                <li><a href='http://riga.zurbu.net/document/96'>Страздумуйжа</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/36'>Берги</a></li>
+                <li><a href='http://riga.zurbu.net/document/28'>Нейермюлен (Адажский замок)</a></li>
+                <li><a href='http://riga.zurbu.net/document/9'>Гауйско-Даугавский канал</a></li>
+                <li><a href='http://riga.zurbu.net/document/34'>Усадьба Баложи, Этнографический музей</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/145'>Сужи</a></li>
+                <li><a href='http://riga.zurbu.net/document/125'>Яунциемс</a></li>
+                <li><a href='http://riga.zurbu.net/document/144'>Трисциемс</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/483'>Вецаки</a></li>
+                <li><a href='http://riga.zurbu.net/document/105'>Старая Даугавгривская крепость</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/107'>Кундзиньсала</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/42'>Вецмилгравис, Ринужи</a></li>
+                <li><a href='http://riga.zurbu.net/document/83'>«Burtnieku nams»</a></li>
+                <li><a href='http://riga.zurbu.net/document/52'>«Ziemeļblāzma»</a></li>
+                <li><a href='http://riga.zurbu.net/document/1'>Милгрависский железнодорожный мост</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/10'>Яунмилгравис</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/108'>Саркандаугава</a></li>
+                <li><a href='http://riga.zurbu.net/document/26'>Второй Царский сад, Психоневрологическая больница</a></li>
+                <li><a href='http://riga.zurbu.net/document/13'>Сахарная мануфактура Раве</a></li>
+                <li><a href='http://riga.zurbu.net/document/122'>Waldschlößchen (Aldaris), его парк и вилла</a></li>
+                <li><a href='http://riga.zurbu.net/document/128'>Церковь святой Троицы</a></li>
+                <li><a href='http://riga.zurbu.net/document/65'>Церковь Христа Царя</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/6'>Межапаркс</a></li>
+                <li><a href='http://riga.zurbu.net/document/102'>Зоопарк</a></li>
+                <li><a href='http://riga.zurbu.net/document/57'>Парк культуры и отдыха</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/3'>Чиекуркалнс</a></li>
+                <li><a href='http://riga.zurbu.net/document/11'>Лесное кладбище</a></li>
+                <li><a href='http://riga.zurbu.net/document/29'>Братское кладбище</a></li>
+                <li><a href='http://riga.zurbu.net/document/464'>Крематорий</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/63'>Тейка</a></li>
+                <li><a href='http://riga.zurbu.net/document/750'>Церковь Креста</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/453'>Московский форштадт</a></li>
+                <li><a href='http://riga.zurbu.net/document/58'>Церковь Иисуса</a></li>
+                <li><a href='http://riga.zurbu.net/document/74'>Церковь Всех святых</a></li>
+                <li><a href='http://riga.zurbu.net/document/109'>Церковь святого Франциска и парк Миера</a></li>
+                <li><a href='http://riga.zurbu.net/document/27'>Гребенщиковская моленная староверов</a></li>
+                <li><a href='http://riga.zurbu.net/document/467'>Центральный рынок</a></li>
+                <li><a href='http://riga.zurbu.net/document/753'>Гостиный двор</a></li>
+                <li><a href='http://riga.zurbu.net/document/753'>Академия наук</a></li>
+                <li><a href='http://riga.zurbu.net/document/1051'>Богадельня Садовникова</a></li>
+                <li><a href='http://riga.zurbu.net/document/89'>Коюсальский сад</a></li>
+                <li><a href='http://riga.zurbu.net/document/78'>Католический госпиталь</a></li>
+                <li><a href='http://riga.zurbu.net/document/2'>Центральная тюрьма</a></li>
+            </ul>
+        </div>
+        <div class='container'>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/120'>Рижская ГЭС</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/95'>Гризинькалнс</a></li>
+                <li><a href='http://riga.zurbu.net/document/127'>Сад Зиедоньдарзс</a></li>
+                <li><a href='http://riga.zurbu.net/document/79'>Парк 1905 года</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/516'>Дворец спорта</a></li>
+                <li><a href='http://riga.zurbu.net/document/66'>Видземский рынок</a></li>
+                <li><a href='http://riga.zurbu.net/document/88'>Ипподром</a></li>
+                <li><a href='http://riga.zurbu.net/document/35'>Большое кладбище</a></li>
+                <li><a href='http://riga.zurbu.net/document/110'>Воздушный мост</a></li>
+                <li><a href='http://riga.zurbu.net/document/72'>Церкви святой Гертруды</a></li>
+                <li><a href='http://riga.zurbu.net/document/126'>Театр «Дайлес»</a></li>
+                <li><a href='http://riga.zurbu.net/document/47'>Народный дом</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/118'>Главное здание Латвийского университета</a></li>
+                <li><a href='http://riga.zurbu.net/document/64'>Дом Латышского общества</a></li>
+                <li><a href='http://riga.zurbu.net/document/5'>Национальная опера</a></li>
+                <li><a href='http://riga.zurbu.net/document/116'>Памятник Свободы</a></li>
+                <li><a href='http://riga.zurbu.net/document/123'>Парк у Городского канала</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/472'>Кинотеатр «Рига»</a></li>
+                <li><a href='http://riga.zurbu.net/document/534'>Кинотеатр «Спартак»</a></li>
+                <li><a href='http://riga.zurbu.net/document/70'>Гимназия Кениньшей, ныне 40 средняя школа</a></li>
+                <li><a href='http://riga.zurbu.net/document/67'>Базар Берга</a></li>
+                <li><a href='http://riga.zurbu.net/document/31'>Верманский сад</a></li>
+                <li><a href='http://riga.zurbu.net/document/59'>Заведение минеральных вод</a></li>
+                <li><a href='http://riga.zurbu.net/document/100'>Дворец правосудия</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/53'>Гостиница «Латвия»</a></li>
+                <li><a href='http://riga.zurbu.net/document/54'>Национальный художественный музей</a></li>
+                <li><a href='http://riga.zurbu.net/document/484'>Академия художеств</a></li>
+                <li><a href='http://riga.zurbu.net/document/25'>Эспланада</a></li>
+                <li><a href='http://riga.zurbu.net/document/87'>Христорождественский собор</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/119'>Сад Виестура</a></li>
+                <li><a href='http://riga.zurbu.net/document/61'>«Дом со сторожем» на Аусекля, 3</a></li>
+                <li><a href='http://riga.zurbu.net/document/111'>Национальный театр</a></li>
+                <li><a href='http://riga.zurbu.net/document/90'>Парк Кронвальда</a></li>
+                <li><a href='http://riga.zurbu.net/document/115'>Цитадель</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/86'>«Большой Кристап»</a></li>
+                <li><a href='http://riga.zurbu.net/document/98'>Госпиталь святого Георгия</a></li>
+                <li><a href='http://riga.zurbu.net/document/48'>Здание Сейма</a></li>
+                <li><a href='http://riga.zurbu.net/document/82'>Армейский экономический магазин (ныне «Galerija Centrs»)</a>
+                </li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/84'>Велосипед</a></li>
+                <li><a href='http://riga.zurbu.net/document/112'>Омнибус</a></li>
+                <li><a href='http://riga.zurbu.net/document/40'>Проект рижского метро</a></li>
+                <li><a href='http://riga.zurbu.net/document/749'>Проект скоростного трамвая</a></li>
+            </ul>
+            <ul>
+                <li><a href='http://riga.zurbu.net/document/121'>Герб города</a></li>
+                <li><a href='http://riga.zurbu.net/document/19'>Петушки на шпилях башен</a></li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <a href='http://ernt.lv/'>Артур Рейльян</a>
+    </footer>
+
+    <script type="text/javascript">
+        $(function () {
+            (function () {
+                $.get('./forum.php', function (content) {
+                    var container = $('#forum-posts').html('<ul></ul>').find('ul');
+                    $.each($.parseJSON(content), function (i, row) {
+                        container.append('<li><a href="' + row['url'] + '">' + row['title'] + '</a></li>');
+                    });
                 });
-            });
-        })();
-        (function() {
-            var quotes = $('#quotes blockquote');
-            quotes.eq(Math.floor(Math.random() * quotes.length)).fadeIn();
-        })();
-    });
-</script>
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-8263337-2', 'auto');
-    ga('send', 'pageview');
-</script>
-
+            })();
+            (function () {
+                var quotes = $('#quotes blockquote');
+                quotes.eq(Math.floor(Math.random() * quotes.length)).fadeIn();
+            })();
+        });
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-8263337-2', 'auto');
+        ga('send', 'pageview');
+    </script>
 </body>
 </html>
