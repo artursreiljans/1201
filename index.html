@@ -4,6 +4,7 @@
     <!--[if lte IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <title>Рига – история и достопримечательности</title>
+    <!-- //TODO add Data URI favicon -->
     <!-- //TODO fix Android Chrome right padding -->
     <style type="text/css">
         html {
@@ -36,6 +37,7 @@
         }
 
         header ul {
+            font-family: arial, sans-serif;
             display: block;
             list-style: none;
             margin: 0;
@@ -55,21 +57,11 @@
             padding: 8px;
         }
 
-        header ul strong {
-            display: block;
-            font-weight: normal;
-            padding: 0;
-            font-family: arial, sans-serif;
-            font-size: 20px;
+        header ul li a, header ul a:visited {
+            color: #ffffff;
             white-space: nowrap;
             text-shadow: 1px 0 2px #555;
-        }
-
-        header ul strong, header ul strong a, header ul strong a:visited {
-            color: #ffffff;
-        }
-
-        header ul li strong a {
+            font-size: 20px;
             padding-right: 19px;
             text-decoration: none;
             border-bottom: 1px solid;
@@ -80,7 +72,6 @@
             padding: 2px 0 2px 0;
             margin: 0;
             color: #fff;
-            font-family: arial, sans-serif;
             font-size: 15px;
             width: 140px;
         }
@@ -268,6 +259,22 @@
             margin: 0;
         }
     </style>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-8263337-2', 'auto');
+        ga('send', 'pageview');
+    </script>
 </head>
 <body>
     <header>
@@ -284,24 +291,24 @@
         </form>
 
         <ul>
-            <li class="external">
-                <strong><a href='http://riga.zurbu.net/maps'>Карты</a></strong>
+            <li>
+                <a href='http://riga.zurbu.net/maps'>Карты</a>
                 <p>Исторические карты Риги</p>
             </li>
-            <li class="external">
-                <strong><a href='http://zurbu.net/'>Zurbu</a></strong>
+            <li>
+                <a href='http://zurbu.net/'>Zurbu</a>
                 <p>Сайты об истории городов мира</p>
             </li>
-            <li class="external">
-                <strong><a href='http://forum.myriga.info/'>Форум</a></strong>
+            <li>
+                <a href='http://forum.myriga.info/'>Форум</a>
                 <p>«Беседы о Риге»<br/>„Sarunas par Rīgu”</p>
             </li>
-            <li class="external">
-                <strong><a href='http://www.rigacv.lv/'>Riga CV</a></strong>
+            <li>
+                <a href='http://www.rigacv.lv/'>Riga CV</a>
                 <p>Общество ценителей Риги</p>
             </li>
-            <li class="external">
-                <strong><a href='http://letters.ernt.lv/'>Буквы</a></strong>
+            <li>
+                <a href='http://letters.ernt.lv/'>Буквы</a>
                 <p>Пропишите ижицу&nbsp;– буквально!</p>
             </li>
         </ul>
@@ -346,7 +353,7 @@
                 <div>Александр Сергеевич Пушкин<br/>Послание Дельвигу</div>
             </blockquote>
         </div>
-        <aside class='block-side'>
+        <aside>
             <h3>Свежие <a href="http://forum.myriga.info/">беседы о Риге</a></h3>
 
             <div id="forum-posts">Загружаю...</div>
@@ -572,33 +579,34 @@
     <script type="text/javascript">
         $(function () {
             (function () {
-                $.get('./forum.php', function (content) {
-                    var container = $('#forum-posts').html('<ul></ul>').find('ul');
-                    $.each($.parseJSON(content), function (i, row) {
-                        container.append('<li><a href="' + row['url'] + '">' + row['title'] + '</a></li>');
-                    });
-                });
+                var url = 'http://forum.myriga.info/latest_posts.php',
+                    success = function (content) {
+                        var container = $('#forum-posts').html('<ul></ul>').find('ul');
+                        $.each($.parseJSON(content), function (i, row) {
+                            container.append('<li><a href="' + row['url'] + '">' + row['title'] + '</a></li>');
+                        })
+                    },
+                    xdr;
+
+                if (window.XDomainRequest) {
+                    xdr = new XDomainRequest();
+                    xdr.open("get", url);
+                    xdr.onload = function () {
+                        success(xdr.responseText);
+                    }
+                    setTimeout(function () {
+                        xdr.send();
+                    }, 0);
+                } else {
+                    $.get(url, success);
+                }
             })();
+
             (function () {
                 var quotes = $('#quotes blockquote');
                 quotes.eq(Math.floor(Math.random() * quotes.length)).fadeIn();
             })();
         });
-    </script>
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-8263337-2', 'auto');
-        ga('send', 'pageview');
     </script>
 </body>
 </html>
