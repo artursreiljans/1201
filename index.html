@@ -2,6 +2,7 @@
 <html>
 <head>
     <!--[if lte IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <title>Рига – история и достопримечательности</title>
     <style type="text/css">
@@ -80,7 +81,6 @@
         header h1, header form {
             padding: .7em 0 .7em;
             margin: 0;
-            white-space: nowrap;
             position: relative;
             z-index: 101;
             font-weight: normal;
@@ -91,13 +91,14 @@
             font-family: georgia, times new roman, serif;
             font-style: italic;
             color: #999999;
-            text-indent: .83em;
+            padding-left: .87em;
             font-size: 1.2em;
         }
 
         header form {
             float: right;
             padding-top: 1em;
+            padding-left: 1em;
         }
 
         header form * {
@@ -205,15 +206,6 @@
             padding: 0 0 .2em 0;
         }
 
-        @media only screen and (max-width: 800px) {
-            #quotes, aside {
-                float: none;
-                width: 100%;
-                padding-left: 0;
-                padding-right: 0;
-            }
-        }
-
         #tongue {
             width: 825px;
             height: 183px;
@@ -270,6 +262,32 @@
             padding: .5em 0 3em 0;
             margin: 3em 1em 0 1em;
         }
+
+        @media only screen and (max-width: 800px) {
+          header ul {
+            padding-right: 1em;
+          }
+
+          header ul li {
+            display: block;
+          }
+
+          header ul li p {
+            display: inline;
+            padding-left: .5em;
+          }
+
+          #toungue, #griffin {
+            display: none;
+          }
+
+          #quotes, aside {
+              float: none;
+              width: 100%;
+              padding-left: 0;
+              padding-right: 0;
+          }
+        }
     </style>
 
     <script>
@@ -313,7 +331,7 @@
             </li>
             <li>
                 <a href='http://forum.myriga.info/'>Форум</a>
-                <p>«Беседы о Риге»&nbsp;– „Sarunas par Rīgu”</p>
+                <p>«Беседы о Риге»&nbsp;– «Sarunas par Rīgu»</p>
             </li>
             <li>
                 <a href='http://www.rigacv.lv/'>Riga CV</a>
