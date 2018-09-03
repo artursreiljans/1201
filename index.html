@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--[if lte IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <title>Рига – история и достопримечательности</title>
@@ -277,7 +276,7 @@
             padding-left: .5em;
           }
 
-          #toungue, #griffin {
+          #tongue, #griffin {
             display: none;
           }
 
@@ -313,7 +312,7 @@
 
         <h1>Рига – история и достопримечательности</h1>
 
-        <form action='http://www.google.com/cse' id='searchbox_009234653099071964377:iunabn2wlhq' method='get'>
+        <form action='https://www.google.com/cse' id='searchbox_009234653099071964377:iunabn2wlhq' method='get'>
             <label for='searchText'>Поиск по сайту и форуму</label>
             <input id='searchText' type='search' results='5' name='q' size='25'/>
             <input type='hidden' name='cx' value='009234653099071964377:iunabn2wlhq'/>
@@ -330,7 +329,7 @@
                 <p>Сайты об истории городов мира</p>
             </li>
             <li>
-                <a href='http://forum.myriga.info/'>Форум</a>
+                <a href='https://forum.myriga.info/'>Форум</a>
                 <p>«Беседы о Риге»&nbsp;– «Sarunas par Rīgu»</p>
             </li>
             <li>
@@ -338,7 +337,7 @@
                 <p>Общество ценителей Риги</p>
             </li>
             <li>
-                <a href='http://letters.ernt.lv/'>Буквы</a>
+                <a href='https://letters.ernt.lv/'>Буквы</a>
                 <p>Пропишите ижицу&nbsp;– буквально!</p>
             </li>
         </ul>
@@ -384,7 +383,7 @@
             </blockquote>
         </div>
         <aside>
-            <h3>Свежие <a href="http://forum.myriga.info/">беседы о Риге</a></h3>
+            <h3>Свежие <a href="https://forum.myriga.info/">беседы о Риге</a></h3>
 
             <div id="forum-posts">Загружаю...</div>
         </aside>
@@ -599,13 +598,13 @@
         </div>
     </main>
     <footer>
-        <a href='http://ernt.lv/'>Артур Рейльян</a>
+        <a href='https://ernt.lv/'>Артур Рейльян</a>
     </footer>
 
     <script type="text/javascript">
         $(function () {
             (function () {
-                var url = 'http://forum.myriga.info/latest_posts.php',
+                var url = '//forum.myriga.info/latest_posts.php',
                     success = function (content) {
                         var container = $('#forum-posts').html('<ul></ul>').find('ul');
                         $.each($.parseJSON(content), function (i, row) {
