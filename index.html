@@ -10,6 +10,7 @@
             --color-primary: #777;
             --color-light: #ddd;
             --color-menu-text: #fff;
+            --color-menu-special: #ff6917bb;
             --color-focus: #0072ce;
             --color-link: #336699;
             --color-link-visited: #855D7E;
@@ -88,8 +89,8 @@
                 margin: 0;
                 display: flex;
                 flex-wrap: wrap;
-                gap: var(--size-small);
-                padding: var(--size-small) var(--size-medium);
+                gap: var(--size-medium);
+                padding: var(--size-medium);
                 width: 100%;
                 align-items: baseline;
 
@@ -133,6 +134,7 @@
                                 flex-grow: 1;
                                 background: var(--color-background);
                                 border: 1px solid var(--color-primary);
+                                margin: 0 var(--size-tiny) 0 0;
                             }
 
                             &[type=submit] {
@@ -172,11 +174,11 @@
                     gap: var(--size-tiny);
                     vertical-align: top;
                     margin: 0;
-                    border-radius: 1px;
+                    border-radius: var(--size-tiny);
                     padding: var(--size-small);
 
-                    &:nth-of-type(5) {
-                        outline: 5px groove var(--color-theme);
+                    &.special {
+                        outline: 5px groove var(--color-menu-special);
                     }
 
                     > a, > a:visited {
@@ -242,6 +244,7 @@
 
                     > h3 {
                         font: var(--font-heading);
+                        color: var(--color-theme-dark);
                     }
 
                     > div > ul {
@@ -313,13 +316,22 @@
               > menu {
                   flex-direction: column;
                   flex-grow: 1;
-                  padding-right: var(--size-medium);
+                  padding: var(--size-small);
 
                   > li {
                       flex-direction: row;
                       align-items: baseline;
                       gap: var(--size-small);
                       width: auto;
+
+                      &.special {
+                          outline: none;
+                          background: var(--color-menu-special);
+
+                          & > a {
+                              text-shadow: none;
+                          }
+                      }
                   }
               }
 
@@ -354,21 +366,21 @@
                 <p>Исторические карты&nbsp;Риги</p>
             </li>
             <li>
-                <a href='http://zurbu.net/'>Zurbu</a>
-                <p>Сайты&nbsp;об&nbsp;истории городов&nbsp;мира</p>
-            </li>
-            <li>
                 <a href='https://forum.myriga.info/'>Форум</a>
                 <p>«Беседы&nbsp;о&nbsp;Риге»</p>
                 <p>«Sarunas&nbsp;par&nbsp;Rīgu»</p>
             </li>
+            <li class="special">
+                <a href='https://place.watch/'>Placewatch</a>
+                <p>Актуальные проекты</p>
+            </li>
+            <li>
+                <a href='http://zurbu.net/'>Zurbu</a>
+                <p>Сайты&nbsp;об&nbsp;истории городов&nbsp;мира</p>
+            </li>
             <li>
                 <a href='http://www.rigacv.lv/'>Riga CV</a>
                 <p>Общество ценителей&nbsp;Риги</p>
-            </li>
-            <li>
-                <a href='https://place.watch/'>Placewatch</a>
-                <p>Актуальные проекты</p>
             </li>
             <li>
                 <a href='https://letters.ernt.lv/'>Буквы</a>
