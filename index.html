@@ -68,32 +68,6 @@
                 outline-offset: var(--size-tiny);
             }
 
-            > #griffin {
-                position: relative;
-                margin-top: -150px;
-                height: 150px;
-
-                > div:nth-of-type(1) {
-                    width: 825px;
-                    height: 183px;
-                    background: var(--image-tongue) no-repeat;
-                    position: absolute;
-                    right: 166px;
-                    top: -25px;
-                    display: block;
-                }
-
-                > div:nth-of-type(2) {
-                    position: absolute;
-                    right: 0;
-                    top: 40px;
-                    background: var(--image-griffin) no-repeat;
-                    width: 407px;
-                    height: 665px;
-                    z-index: 100;
-                }
-            }
-
             > h1 {
                 margin: 0;
                 position: relative;
@@ -300,13 +274,39 @@
                     color: var(--color-primary);
                 }
             }
-        }
 
+            > #griffin {
+                position: relative;
+                margin-top: -150px;
+                height: 150px;
+
+                > div:nth-of-type(1) {
+                    width: 825px;
+                    height: 183px;
+                    background: var(--image-tongue) no-repeat;
+                    position: absolute;
+                    right: 166px;
+                    top: -25px;
+                    display: block;
+                }
+
+                > div:nth-of-type(2) {
+                    position: absolute;
+                    right: 0;
+                    top: 40px;
+                    background: var(--image-griffin) no-repeat;
+                    width: 407px;
+                    height: 665px;
+                    z-index: 100;
+                }
+            }
+        }
 
         @media only screen and (max-width: 800px) {
             html > body > #page {
                 > #griffin {
-                    display: none;
+                    margin-top: -50px;
+                    height: 50px;
                 }
             }
         }
@@ -373,8 +373,6 @@
                 <dd>Сайты&nbsp;об&nbsp;истории городов&nbsp;мира</dd>
                 <dt><a href='http://www.rigacv.lv/'>Riga CV</a></dt>
                 <dd>Общество ценителей&nbsp;Риги</dd>
-                <dt><a href='https://letters.ernt.lv/'>Буквы</a></dt>
-                <dd>Пропишите&nbsp;ижицу&nbsp;– буквально!</dd>
             </dl>
         </section>
     </main>
