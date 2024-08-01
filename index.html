@@ -34,6 +34,14 @@
             --font-quote: normal 1.4rem georgia, times new roman, serif;
             --font-nav: normal 1rem arial, sans-serif;
             --font-nav-link: normal 1.25rem arial, sans-serif;
+
+            --offset-y-griffin: -150px;
+        }
+
+        @media only screen and (max-width: 800px) {
+            :root {
+                --offset-y-griffin: -90px;
+            }
         }
 
         :root {
@@ -191,7 +199,6 @@
                     > form {
                         display: flex;
                         align-items: baseline;
-                        flex-grow: 1;
                         white-space: nowrap;
 
                         > label {
@@ -249,22 +256,6 @@
                 }
             }
 
-            > aside {
-                width: 25%;
-
-                > div > ul, > h3 {
-                    margin: 0;
-                    padding: 0;
-                }
-
-                > h3 {
-                    font: var(--font-header);
-                    color: var(--color-theme-dark);
-                }
-
-
-            }
-
             > footer {
                 border-top: 3px double var(--color-primary);
                 padding: var(--size-medium) 0 var(--size-large) 0;
@@ -277,8 +268,8 @@
 
             > #griffin {
                 position: relative;
-                margin-top: -150px;
-                height: 150px;
+                margin-top: var(--offset-y-griffin);
+                height: calc(var(--offset-y-griffin) * -1);
 
                 > div:nth-of-type(1) {
                     width: 825px;
@@ -301,18 +292,10 @@
                 }
             }
         }
-
-        @media only screen and (max-width: 800px) {
-            html > body > #page {
-                > #griffin {
-                    margin-top: -50px;
-                    height: 50px;
-                }
-            }
-        }
     </style>
 </head>
 <body>
+
 <div id="page">
     <h1>О Риге</h1>
 
@@ -337,18 +320,27 @@
         <section>
             <h2>Архив 1201.lv</h2>
             <dl>
-                <dt><a href="https://past.1201.lv/1201">Статьи об истории и достопримечательностях Риги</a></dt>
+                <dt><a href="https://past.1201.lv/1201">Статьи об истории и
+                    достопримечательностях Риги</a></dt>
                 <dd>Больше сотни – с 2003 по 2008 год</dd>
-                <dt><a href="https://past.1201.lv/maps">Исторические карты</a></dt>
+                <dt><a href="https://past.1201.lv/maps">Исторические карты</a>
+                </dt>
                 <dd>Рига и окрестности глазами картографов прошлых веков</dd>
+            </dl>
+            <h2>Глобальные проекты</h2>
+            <dl>
+                <dt><a href="https://place.watch/">Placewatch</a></dt>
+                <dd>Платформа для сайтов о городах</dd>
+                <dt><a href='http://zurbu.net/'>Zurbu</a></dt>
+                <dd>Сайты&nbsp;об&nbsp;истории городов&nbsp;мира</dd>
             </dl>
         </section>
         <section>
             <h2>Свежие <a href="https://forum.myriga.info/">беседы о Риге</a>
             </h2>
-
             <div id="forum-posts">Загружаю...</div>
-
+        </section>
+        <section>
             <form action='https://www.google.com/cse' method='get'>
                 <fieldset>
                     <legend>
@@ -363,16 +355,9 @@
                 </fieldset>
             </form>
 
-        </section>
-        <section>
-            <h2>И ещё немного</h2>
             <dl>
-                <dt><a href="https://place.watch/">Placewatch</a></dt>
-                <dd>Платформа для сайтов о городах</dd>
-                <dt><a href='http://zurbu.net/'>Zurbu</a></dt>
-                <dd>Сайты&nbsp;об&nbsp;истории городов&nbsp;мира</dd>
                 <dt><a href='http://www.rigacv.lv/'>Riga CV</a></dt>
-                <dd>Общество ценителей&nbsp;Риги</dd>
+                <dd>Краеведческое общество при форуме</dd>
             </dl>
         </section>
     </main>
