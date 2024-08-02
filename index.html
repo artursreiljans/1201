@@ -36,7 +36,7 @@
             --font-nav-link: normal 1.25rem arial, sans-serif;
 
             --offset-y-griffin: -150px;
-            --width-max: 900px;
+            --width-max: 55rem;
         }
 
         @media only screen and (max-width: 800px) {
@@ -79,7 +79,8 @@
 
             > h1,
             > nav > ul,
-            > main {
+            > main,
+            > footer {
                 margin: 0 auto;
                 max-width: var(--width-max);
             }
@@ -265,8 +266,8 @@
 
             > footer {
                 border-top: 3px double var(--color-primary);
-                padding: var(--size-medium) 0 var(--size-large) 0;
-                margin: var(--size-large) var(--size-medium) 0 var(--size-medium);
+                padding: var(--size-medium);
+                margin-top: var(--size-large);
 
                 > a, > a:visited {
                     color: var(--color-primary);
