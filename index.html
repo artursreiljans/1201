@@ -7,6 +7,18 @@
     <style>
         :root {
             --color-background: #fff;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: var(--color-background);
+            box-sizing: border-box;
+        }
+
+        html > body > #page {
             --color-theme: #7da137;
             --color-text: #777;
             --color-nav: #fff;
@@ -36,30 +48,16 @@
             --font-nav-link: normal 1.25rem system-ui, sans-serif;
             --font-nav-details: italic 1rem georgia, times new roman, serif;
 
-            --offset-y-beast: -115px;
+            --offset-y-beast: 25px;
             --width-max: 55rem;
-        }
 
-        @media only screen and (max-width: 800px) {
-            :root {
-                --offset-y-beast: -60px;
+            @media only screen and (max-width: 800px) {
+                --offset-y-beast: 70px;
             }
-        }
 
-        :root {
             font: var(--font-default);
-        }
-
-        html, body {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            background: var(--color-background);
-            box-sizing: border-box;
-        }
-
-        html > body > #page {
             color: var(--color-text);
+            height: 100%;
 
             * {
                 box-sizing: border-box;
@@ -76,6 +74,26 @@
             & a:active, & a:focus, & input:focus {
                 outline: 3px solid var(--color-focus);
                 outline-offset: var(--size-tiny);
+            }
+
+            & {
+                background-repeat: no-repeat;
+                background-image: var(--image-tongue);
+                background-position: top calc(var(--offset-y-beast) - 25px) right 166px;
+            }
+
+            &:after {
+                content: '';
+                pointer-events: none;
+                position: absolute;
+                right: 0;
+                top: 0;
+                background-repeat: no-repeat;
+                background-image: var(--image-beast);
+                background-position: top calc(var(--offset-y-beast) + 40px) right;
+                width: 100%;
+                height: calc(var(--offset-y-beast) + 40px + 665px);
+                z-index: var(--zindex-beast-body);
             }
 
             > h1,
@@ -98,7 +116,8 @@
                 position: relative;
                 z-index: var(--zindex-nav);
                 background: var(--color-theme) repeat-x var(--image-nav);
-                box-shadow: 1px 1px 2px var(--color-details);
+                box-shadow: inset 0 -1rem 1rem -1rem var(--color-theme);
+                border-bottom: 1px solid var(--color-theme);
 
                 > ul {
                     display: flex;
@@ -140,7 +159,7 @@
                         > a, > a:visited {
                             color: var(--color-nav);
                             white-space: nowrap;
-                            text-shadow: 1px 0 2px #555;
+                            text-shadow: 1px 1px 3px var(--color-text);
                             font: var(--font-nav-link);
                             text-decoration: underline;
                             text-underline-offset: .25ex;
@@ -190,8 +209,7 @@
 
                     > h2 {
                         padding: var(--size-small);
-                        margin: calc(-3px - var(--size-small)) calc(-1px - var(--size-small)) calc(-1px - var(--size-small)) calc(-1px - var(--size-small));
-                        margin-bottom: 0;
+                        margin: calc(-3px - var(--size-small)) calc(-1px - var(--size-small)) 0 calc(-1px - var(--size-small));
                         font: var(--font-subheader);
                         position: relative;
                         background: var(--color-background);
@@ -292,33 +310,6 @@
                     color: var(--color-text);
                 }
             }
-
-            > #beast {
-                position: relative;
-                margin-top: var(--offset-y-beast);
-                height: calc(var(--offset-y-beast) * -1);
-
-                > div:nth-of-type(1) {
-                    width: 825px;
-                    height: 183px;
-                    background: var(--image-tongue) no-repeat;
-                    position: absolute;
-                    right: 166px;
-                    top: -25px;
-                    display: block;
-                    z-index: var(--zindex-beast-tongue);
-                }
-
-                > div:nth-of-type(2) {
-                    position: absolute;
-                    right: 0;
-                    top: 40px;
-                    background: var(--image-beast) no-repeat;
-                    width: 407px;
-                    height: 665px;
-                    z-index: var(--zindex-beast-body);
-                }
-            }
         }
     </style>
 </head>
@@ -339,11 +330,6 @@
             </li>
         </ul>
     </nav>
-
-    <div id='beast'>
-        <div></div>
-        <div></div>
-    </div>
 
     <main>
         <section>
@@ -408,7 +394,7 @@
                 (post) => {
                     const li = document.createElement('li');
                     const a = document.createElement('a');
-                    a.href = post.url;
+                    a.href = post.url.replace('&amp;', '&');
                     a.innerHTML = post.title;
                     li.appendChild(a);
                     list.appendChild(li);
