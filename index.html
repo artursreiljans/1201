@@ -10,7 +10,6 @@
             --color-primary: #777;
             --color-light: #ddd;
             --color-nav-text: #fff;
-            --color-nav-special: #ff6917bb;
             --color-focus: #0072ce;
             --color-link: #336699;
             --color-link-visited: #855D7E;
@@ -31,17 +30,16 @@
             --font-header: italic 2.5rem georgia, times new roman, serif;
             --font-subheader: italic 1.5rem georgia, times new roman, serif;
             --font-and: italic 1rem georgia, times new roman, serif;
-            --font-quote: normal 1.4rem georgia, times new roman, serif;
-            --font-nav: normal 1rem arial, sans-serif;
-            --font-nav-link: normal 1.25rem arial, sans-serif;
+            --font-nav: normal 1rem system-ui, sans-serif;
+            --font-nav-link: normal 1.25rem system-ui, sans-serif;
 
-            --offset-y-griffin: -150px;
+            --offset-y-griffin: -100px;
             --width-max: 55rem;
         }
 
         @media only screen and (max-width: 800px) {
             :root {
-                --offset-y-griffin: -90px;
+                --offset-y-griffin: -60px;
             }
         }
 
@@ -94,7 +92,7 @@
             }
 
             > nav {
-                margin: 0 0 var(--size-large) 0;
+                margin: 0;
                 border-color: var(--color-light);
                 border-style: solid;
                 border-width: 1px 0;
@@ -175,9 +173,9 @@
                 position: relative;
                 z-index: 110;
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(20rem, auto));
-                padding: var(--size-medium);
-                gap: var(--size-large) var(--size-medium);
+                grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+                padding: var(--size-large) var(--size-medium) var(--size-medium);
+                gap: var(--size-large);
 
                 > section {
                     display: flex;
@@ -191,6 +189,50 @@
 
                     > h2 {
                         font: var(--font-subheader);
+                    }
+
+                    > figure {
+                        padding: var(--size-small);
+                        margin: calc(var(--size-small) * -1);
+                        margin-bottom: 0;
+                        font: var(--font-subheader);
+                        position: relative;
+                        z-index: 89;
+                        background: var(--color-background);
+                        border-color: var(--color-theme);
+
+                        border-radius: 5px;
+                        border-width: 3px 1px 1px;
+                        border-style: solid dotted dotted solid;
+
+                        &:before {
+                            position: absolute;
+                            /*z-index: 40;*/
+                            content: '⌇';
+                            top: -50px;
+                            height: 50px;
+                            width: 50px;
+                            margin: 0 0 0 0;
+                            overflow: hidden;
+                            color: var(--color-theme);
+                            /*background-image: var(--image-nav);*/
+                            /*background-clip: text;*/
+                            /*color: transparent;*/
+                            padding: 0 0 0 var(--size-large);
+                            font-size: 60px;
+                            line-height: 60px;
+                            font-family: monospace;
+                            grid-column: 1 / -1;
+                        }
+                    }
+
+                    > hr {
+                        color: transparent;
+                        height: 0;
+                        border: 0;
+                        border-top: 1px dotted var(--color-primary);
+                        width: 10ch;
+                        margin: 0;
                     }
 
                     > dl {
@@ -328,19 +370,25 @@
 
     <main>
         <section>
-            <h2>Архив 1201.lv</h2>
+            <figure>
+                Эти сайты уже работают на <a
+                    href="https://place.watch/">Placewatch</a>&nbsp;– платформе
+                для сайтов о городах
+            </figure>
             <dl>
                 <dt><a href="https://past.1201.lv/1201">Статьи об истории и
                     достопримечательностях Риги</a></dt>
-                <dd>Больше сотни – с 2003 по 2008 год</dd>
-                <dt><a href="https://past.1201.lv/maps">Исторические карты</a>
+                <dd>Больше сотни статей, опубликованных на 1201.lv с 2003 по
+                    2008 год
+                </dd>
+                <dt><a href="https://past.1201.lv/maps">Исторические
+                    карты</a>
                 </dt>
-                <dd>Рига и окрестности глазами картографов прошлых веков</dd>
+                <dd>Рига и окрестности глазами картографов прошлых веков
+                </dd>
             </dl>
-            <h2>Не только о Риге</h2>
+            <h2>А эти&nbsp;– скоро будут</h2>
             <dl>
-                <dt><a href="https://place.watch/">Placewatch</a></dt>
-                <dd>Платформа для сайтов о городах</dd>
                 <dt><a href='http://zurbu.net/'>Zurbu</a></dt>
                 <dd>Сайты&nbsp;об&nbsp;истории городов&nbsp;мира</dd>
             </dl>
@@ -349,6 +397,7 @@
             <h2>Свежие <a href="https://forum.myriga.info/">беседы о Риге</a>
             </h2>
             <div id="forum-posts">Загружаю...</div>
+            <hr/>
             <form action='https://www.google.com/cse' method='get'>
                 <fieldset>
                     <legend>
