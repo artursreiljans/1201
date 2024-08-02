@@ -36,6 +36,7 @@
             --font-nav-link: normal 1.25rem arial, sans-serif;
 
             --offset-y-griffin: -150px;
+            --width-max: 900px;
         }
 
         @media only screen and (max-width: 800px) {
@@ -76,27 +77,22 @@
                 outline-offset: var(--size-tiny);
             }
 
+            > h1,
+            > nav > ul,
+            > main {
+                margin: 0 auto;
+                max-width: var(--width-max);
+            }
+
             > h1 {
-                margin: 0;
                 position: relative;
                 z-index: 101;
-                flex-grow: 2;
                 font: var(--font-header);
                 color: var(--color-primary);
                 padding: var(--size-medium);
-                padding-right: var(--size-large);
             }
 
             > nav {
-                display: flex;
-                flex-wrap: nowrap;
-                flex-direction: row;
-                flex: min-content;
-                clear: both;
-                padding: var(--size-medium) 350px var(--size-medium) var(--size-medium);
-                gap: var(--size-medium);
-                font: var(--font-nav);
-                list-style: none;
                 margin: 0 0 var(--size-large) 0;
                 border-color: var(--color-light);
                 border-style: solid;
@@ -104,59 +100,70 @@
                 position: relative;
                 z-index: 90;
                 background: var(--color-theme) repeat-x var(--image-nav);
-                align-items: baseline;
 
-                > li {
+                > ul {
                     display: flex;
-                    flex-direction: column;
-                    width: max-content;
-                    max-width: 45ch;
+                    flex-wrap: nowrap;
+                    flex-direction: row;
+                    flex: min-content;
+                    padding: var(--size-medium) 350px var(--size-medium) var(--size-medium);
                     gap: var(--size-medium);
-                    margin: 0;
+                    font: var(--font-nav);
+                    list-style: none;
+                    align-items: baseline;
 
-                    &:has(span) {
-                        align-content: center;
-                        justify-content: center;
-                    }
-
-                    > span {
-                        display: block;
-                        background: var(--color-griffin);
-                        padding: 0 var(--size-small);
-                        min-width: 3ch;
-                        height: 3ch;
-                        border-radius: 3ch;
-                        align-self: center;
-                        align-content: center;
-                        text-align: center;
-                        font: var(--font-and);
-                    }
-
-                    > a, > a:visited {
-                        color: var(--color-nav-text);
-                        white-space: nowrap;
-                        text-shadow: 1px 0 2px #555;
-                        font: var(--font-nav-link);
-                        text-decoration: underline;
-                        text-underline-offset: .25ex;
-                        width: min-content;
-                        height: min-content;
-                    }
-
-                    > ul {
+                    > li {
                         display: flex;
                         flex-direction: column;
-                        gap: var(--size-small);
-                        padding: 0;
+                        width: max-content;
+                        max-width: 45ch;
+                        gap: var(--size-medium);
                         margin: 0;
-                        color: var(--color-nav-text);
-                        list-style: none;
 
-                        > li {
+                        &:has(span) {
+                            align-content: center;
+                            justify-content: center;
+                        }
+
+                        > span {
+                            display: block;
+                            background: var(--color-griffin);
+                            padding: 0 var(--size-small);
+                            min-width: 3ch;
+                            height: 3ch;
+                            border-radius: 3ch;
+                            align-self: center;
+                            align-content: center;
+                            text-align: center;
+                            font: var(--font-and);
+                        }
+
+                        > a, > a:visited {
+                            color: var(--color-nav-text);
+                            white-space: nowrap;
                             text-shadow: 1px 0 2px #555;
+                            font: var(--font-nav-link);
+                            text-decoration: underline;
+                            text-underline-offset: .25ex;
+                            width: min-content;
+                            height: min-content;
+                        }
 
-                            > a, > a:visited {
-                                color: var(--color-nav-text);
+                        > ul {
+                            display: flex;
+                            flex-direction: column;
+                            gap: var(--size-small);
+                            padding: 0;
+                            margin: 0;
+                            color: var(--color-nav-text);
+                            list-style: none;
+
+                            > li {
+                                text-shadow: 1px 0 2px #555;
+
+                                > a, > a:visited {
+                                    color: var(--color-nav-text);
+                                }
                             }
                         }
                     }
@@ -300,15 +307,17 @@
     <h1>О Риге</h1>
 
     <nav>
-        <li>
-            <a href="https://past.1201.lv">О прошлом</a>
-        </li>
-        <li>
-            <span>и</span>
-        </li>
-        <li>
-            <a href="https://future.1201.lv">О будущем</a>
-        </li>
+        <ul>
+            <li>
+                <a href="https://past.1201.lv">О прошлом</a>
+            </li>
+            <li>
+                <span>и</span>
+            </li>
+            <li>
+                <a href="https://future.1201.lv">О будущем</a>
+            </li>
+        </ul>
     </nav>
 
     <div id='griffin'>
@@ -339,8 +348,6 @@
             <h2>Свежие <a href="https://forum.myriga.info/">беседы о Риге</a>
             </h2>
             <div id="forum-posts">Загружаю...</div>
-        </section>
-        <section>
             <form action='https://www.google.com/cse' method='get'>
                 <fieldset>
                     <legend>
@@ -354,11 +361,6 @@
                     <input type='submit' name='sa' value='➔'/>
                 </fieldset>
             </form>
-
-            <dl>
-                <dt><a href='http://www.rigacv.lv/'>Riga CV</a></dt>
-                <dd>Краеведческое общество при форуме</dd>
-            </dl>
         </section>
     </main>
 
