@@ -48,6 +48,8 @@
             --font-nav-link: normal 1.25rem system-ui, sans-serif;
             --font-nav-details: italic 1rem georgia, times new roman, serif;
 
+            --border-radius: .33rem;
+
             --offset-y-beast: 25px;
             --width-max: 55rem;
 
@@ -252,7 +254,7 @@
                         border-color: var(--color-theme);
                         border-width: 3px 1px 1px;
                         border-style: solid dotted dotted solid;
-                        border-radius: 5px;
+                        border-radius: var(--border-radius);
                     }
 
                     > hr {
@@ -279,10 +281,10 @@
                         display: flex;
                         align-items: baseline;
                         white-space: nowrap;
-
-                        > label {
-                            padding-right: var(--size-tiny);
-                        }
+                        background: var(--color-details);
+                        padding: var(--size-small) var(--size-small) var(--size-medium);
+                        margin: 0 calc(var(--size-small) * -1);
+                        border-radius: var(--border-radius);
 
                         > fieldset {
                             padding: 0;
