@@ -260,15 +260,24 @@ html > body > #page {
             padding: 0 0 var(--size-small);
         }
 
-        > section {
+        > forum-latest > ul {
+            list-style-type: '➔';
+            color: var(--color-theme);
+            padding: 0 0 0 var(--size-medium);
+            margin: 0;
             display: flex;
             flex-direction: column;
             gap: var(--size-small);
 
-            > dl {
-                margin: 0;
-                padding: 0;
+            > li {
+                padding: 0 0 0 var(--size-tiny);
             }
+        }
+
+        > section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--size-small);
 
             > form {
                 display: flex;
@@ -312,20 +321,6 @@ html > body > #page {
                             margin-left: var(--size-tiny);
                         }
                     }
-                }
-            }
-
-            > div > ul {
-                list-style-type: '➔';
-                color: var(--color-theme);
-                padding: 0 0 0 var(--size-medium);
-                margin: 0;
-                display: flex;
-                flex-direction: column;
-                gap: var(--size-small);
-
-                > li {
-                    padding: 0 0 0 var(--size-tiny);
                 }
             }
 
