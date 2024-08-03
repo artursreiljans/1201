@@ -62,14 +62,17 @@
 
             display: grid;
             grid-template-rows: min-content min-content min-content 1fr;
-            grid-template-columns: 1fr var(--size-medium) minmax(auto, var(--width-max)) var(--size-medium) 1fr;
+            grid-template-columns:
+                    1fr
+                    var(--size-medium)
+                    [main-start] minmax(auto, var(--width-max)) [main-end]
+                    var(--size-medium)
+                    1fr;
 
             min-height: 100vh;
 
-            & > *,
-            &:after {
-                grid-column: 3;
-                align-content: start;
+            & > * {
+                grid-column: main;
             }
 
             & > h1 {
@@ -130,14 +133,6 @@
                 z-index: var(--zindex-beast-body);
             }
 
-            > h1,
-            > nav > ul,
-            > main,
-            > footer {
-                /*margin: 0 auto;*/
-                /*max-width: var(--width-max);*/
-            }
-
             > h1 {
                 position: relative;
                 z-index: var(--zindex-main);
@@ -157,7 +152,7 @@
                 border-bottom: 1px solid var(--color-theme);
 
                 > ul {
-                    grid-column: 3;
+                    grid-column: main;
                     display: flex;
                     flex-wrap: nowrap;
                     flex-direction: row;
@@ -213,7 +208,7 @@
                 position: relative;
                 z-index: var(--zindex-main);
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(35ch, 1fr));
                 gap: var(--size-large);
 
                 &:before {
@@ -226,8 +221,8 @@
                     overflow: hidden;
                     color: var(--color-theme);
                     padding: 0 0 0 var(--size-large);
-                    font-size: calc(var(--element-height) * 1.2);
-                    line-height: var(--element-height);
+                    font-size: calc(var(--element-height) * 1.6);
+                    line-height: .5ex;
                     grid-column: 1 / -1;
                 }
 
@@ -257,15 +252,6 @@
                         border-radius: var(--border-radius);
                     }
 
-                    > hr {
-                        color: transparent;
-                        height: 0;
-                        border: 0;
-                        border-top: 1px dotted var(--color-text);
-                        width: 10ch;
-                        margin: 0;
-                    }
-
                     > dl {
                         display: flex;
                         flex-direction: column;
@@ -283,7 +269,7 @@
                         white-space: nowrap;
                         background: var(--color-details);
                         padding: var(--size-small) var(--size-small) var(--size-medium);
-                        margin: 0 calc(var(--size-small) * -1);
+                        margin: var(--size-small) calc(var(--size-small) * -1) 0;
                         border-radius: var(--border-radius);
 
                         > fieldset {
