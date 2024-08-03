@@ -41,6 +41,7 @@ html > body > #page {
     --font-nav: normal 1rem system-ui, sans-serif;
     --font-nav-link: normal 1.25rem system-ui, sans-serif;
     --font-nav-details: italic 1rem georgia, serif;
+    --font-search: italic 1rem system-ui, serif;
     --font-disclaimer: normal 1rem system-ui, sans-serif;
 
     --border-radius: .33rem;
@@ -283,11 +284,6 @@ html > body > #page {
                 display: flex;
                 align-items: baseline;
                 white-space: nowrap;
-                background: var(--color-details);
-                padding: var(--size-small) var(--size-small) var(--size-medium);
-                margin: calc(var(--size-small) * -1);
-                margin-bottom: 0;
-                border-radius: var(--border-radius);
 
                 > fieldset {
                     padding: 0;
@@ -298,6 +294,7 @@ html > body > #page {
 
                     > legend {
                         padding: 0 0 var(--size-tiny);
+                        font: var(--font-search);
                     }
 
                     > input {
