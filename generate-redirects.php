@@ -31,7 +31,11 @@ foreach ($redirects as $from => $to) {
         \str_replace('{url}', $to, $template),
     );
 
-    $cloudflareFile[] = \sprintf('/%s %s', $from, $to);
+    $cloudflareFile[] = \sprintf(
+        '/%s %s',
+        $from,
+        \str_replace('http://', 'https://zurbu.app/*/', $to),
+    );
 }
 
 \file_put_contents(
