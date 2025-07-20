@@ -16,6 +16,8 @@ $redirects = \json_decode(
     \file_get_contents(__DIR__ . '/redirects.json'),
 );
 
+$cloudflareFile = [];
+
 foreach ($redirects as $from => $to) {
     $directory = __DIR__ . \DIRECTORY_SEPARATOR . \trim($from, '/');
     $filename = $directory . \DIRECTORY_SEPARATOR . 'index.html';
@@ -28,6 +30,13 @@ foreach ($redirects as $from => $to) {
         $filename,
         \str_replace('{url}', $to, $template),
     );
+
+    $cloudflareFile[] = \sprintf('/%s %s', $from, $to);
 }
+
+\file_put_contents(
+    __DIR__ . '/_redirects',
+    \implode(\PHP_EOL, $cloudflareFile),
+);
 
 echo 'Ok.';
