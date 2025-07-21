@@ -1,37 +1,10 @@
 <?php
 
-$template = <<<TEMPLATE
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <meta http-equiv="refresh" content="0; url={url}">
-        </head>
-        <body>
-            <p>Redirecting to {url}...</p>
-        </body>
-    </html>
-    TEMPLATE;
+$source = \json_decode(\file_get_contents(__DIR__ . '/redirects.json'));
 
-$redirects = \json_decode(
-    \file_get_contents(__DIR__ . '/redirects.json'),
-);
-
-$cloudflareFile = [];
-
-foreach ($redirects as $from => $to) {
-    $directory = __DIR__ . \DIRECTORY_SEPARATOR . \trim($from, '/');
-    $filename = $directory . \DIRECTORY_SEPARATOR . 'index.html';
-
-    if (!\is_dir($directory)) {
-        \mkdir($directory, 0755, true);
-    }
-
-    \file_put_contents(
-        $filename,
-        \str_replace('{url}', $to, $template),
-    );
-
-    $cloudflareFile[] = \sprintf(
+$target = [];
+foreach ($source as $from => $to) {
+    $target[] = \sprintf(
         '/%s %s',
         $from,
         \str_replace('http://', 'https://zurbu.app/*/', $to),
@@ -40,7 +13,7 @@ foreach ($redirects as $from => $to) {
 
 \file_put_contents(
     __DIR__ . '/_redirects',
-    \implode(\PHP_EOL, $cloudflareFile),
+    \implode(\PHP_EOL, $target),
 );
 
 echo 'Ok.';
