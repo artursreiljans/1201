@@ -1,19 +1,13 @@
 <?php
 
-$source = \json_decode(\file_get_contents(__DIR__ . '/redirects.json'));
+$source = \parse_ini_file(__DIR__ . '/redirects.ini');
 
-$target = [];
+$redirects = [];
 foreach ($source as $from => $to) {
-    $target[] = \sprintf(
-        '/%s %s',
-        $from,
-        \str_replace('http://', 'https://zurbu.app/*/', $to),
-    );
+    $redirect = \strlen($to) ? 'https://zurbu.app/*/' . $to : '/';
+    $redirects[] = \sprintf('/%s %s', $from, $redirect);
 }
 
-\file_put_contents(
-    __DIR__ . '/_redirects',
-    \implode(\PHP_EOL, $target),
-);
+\file_put_contents(__DIR__ . '/_redirects', \implode(\PHP_EOL, $redirects));
 
 echo 'Ok.';
